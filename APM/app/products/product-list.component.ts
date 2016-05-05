@@ -9,32 +9,36 @@ import { ProductService } from './product.service';
 	templateUrl: 'app/products/product-list.component.html',
 	styleUrls: ['app/products/product-list.component.css'],
 	pipes: [ProductFilterPipe],
-	directives: [StarComponent]
+	directives: [StarComponent],
+
 })
 
 export class ProductListComponent implements OnInit{
-
 	pageTitle: string = "Product List";
 	imageWidth: number = 50;
 	imageMargin: number 2;
 	showImage: boolean = false;
-	listFilter: string;
+	listFilter: string = '';
+	errorMessage: string;
+	products: IProduct[];
 
 	//Inject Product Service to constructor
-	constructor( private  _productService: ProductService) {
+	constructor( private _productService: ProductService) {
 	}
-	
+
 	toggleImage(): void{
 		this.showImage = !this.showImage;
 	}
 
 	ngOnInit(): void{
 		//bring in data from service
-		this.products = this._productService.getProducts();
+		this._productService.getProducts()
+			.subscribe(
+				products => this.products = products,
+				error => this.errorMessage = <any>error);
 	}
 
-	onRatingClicked( message: string ): void{
+	onRatingClicked( message: string ): void {
 		this.pageTitle = 'Product List: ' + message;
 	}
-
 }
