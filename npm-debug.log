@@ -5,7 +5,7 @@
 4 verbose config Skipping project config: /Users/episcopalmn/.npmrc. (matches userconfig)
 5 verbose stack Error: ENOENT, open '/Users/episcopalmn/package.json'
 5 verbose stack     at Error (native)
-6 verbose cwd /Users/episcopalmn/Desktop/Angular2
+6 verbose cwd /Users/episcopalmn/Desktop/Angular2 -GS
 7 error Darwin 15.3.0
 8 error argv "node" "/usr/local/bin/npm" "start"
 9 error node v0.12.5
